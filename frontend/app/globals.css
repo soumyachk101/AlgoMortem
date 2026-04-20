@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Backgrounds */
+  --bg-base:        #080B0F;
+  --bg-surface:     #0E1219;
+  --bg-elevated:    #141B24;
+  --bg-sunken:      #060810;
+
+  /* Borders */
+  --border-subtle:  rgba(255,255,255,0.04);
+  --border-default: rgba(255,255,255,0.08);
+  --border-strong:  rgba(255,255,255,0.14);
+
+  /* Brand */
+  --brand-primary:  #C0392B;
+  --brand-dim:      #7B2020;
+  --brand-glow:     rgba(192,57,43,0.15);
+
+  /* Accents */
+  --accent-amber:   #E8A020;
+  --accent-steel:   #4E9EBF;
+  --accent-ghost:   #2D3A4A;
+
+  /* Text */
+  --text-primary:   #E8EDF2;
+  --text-secondary: #8A9BB0;
+  --text-muted:     #4A5568;
+  --text-inverse:   #080B0F;
+
+  /* Semantic */
+  --success:        #1E7D47;
+  --error:          #C0392B;
+  --warning:        #E8A020;
+
+  /* Typography */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-ui:      'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Fira Code', monospace;
+
+  /* Type scale */
+  --text-xs:   0.70rem;
+  --text-sm:   0.80rem;
+  --text-base: 0.9375rem;
+  --text-lg:   1.0625rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  2rem;
+  --text-hero: 3.5rem;
+
+  /* Breakpoints */
+  --bp-mobile:  375px;
+  --bp-tablet:  768px;
+  --bp-desktop: 1280px;
+  --bp-wide:    1600px;
+}
+
+@theme inline {
+  --color-bg-base: var(--bg-base);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-sunken: var(--bg-sunken);
+  --color-brand: var(--brand-primary);
+  --color-brand-dim: var(--brand-dim);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-steel: var(--accent-steel);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --font-display: var(--font-display);
+  --font-ui: var(--font-ui);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--accent-ghost); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: var(--brand-glow);
+  color: var(--text-primary);
+}
+
+/* Noise texture overlay for hero */
+.noise-texture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Step lock animation */
+@keyframes lockFlash {
+  0%   { background-color: transparent; }
+  30%  { background-color: rgba(78,158,191,0.15); }
+  100% { background-color: transparent; }
+}
+
+.step-locking {
+  animation: lockFlash 300ms ease forwards;
+}
+
+/* Anti-hint border draw */
+@keyframes borderDraw {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+/* Pulse for rate limit */
+@keyframes ratePulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+.rate-pulse {
+  animation: ratePulse 1.5s ease-in-out infinite;
+}
+
+/* Hint counter fill */
+@keyframes fillLeft {
+  from { width: 0%; }
+  to   { width: var(--fill-pct); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Monospace numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
