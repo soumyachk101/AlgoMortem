@@ -11,4 +11,11 @@ export default function LandingPage() {
   return (
     <div className=\"flex flex-col min-h-dvh\">
       <Navbar />
-      <main className=\"pt-[72px]\">\n        <Hero />\n        <HowItWorks />\n        <DemoSection />\n        <Features />\n        <FAQ />\n        <CTA />\n      </main>\n      <LandingFooter />\n    </div>\n  );\n}\n
+      <main className=\"pt-[72px]\">
+        <Hero />
+        <HowItWorks />
+        <DemoSection />
+        <Features />
+        <FAQ />
+        <CTA />
+      </main>\n      <LandingFooter />\n    </div>\n  );\n}\n
