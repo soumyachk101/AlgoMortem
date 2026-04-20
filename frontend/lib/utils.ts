@@ -1,0 +1,1 @@
+import { type ClassValue, clsx } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}\n\nexport function formatDate(date: string | Date) {\n  return new Intl.DateTimeFormat(\"en-US\", {\n    month: \"short\",\n    day: \"numeric\",\n    year: \"numeric\",\n  }).format(new Date(date));\n}\n
